@@ -6,7 +6,21 @@ let employeeList = [];
 function onReady() {
     console.log('on ready');
     
+    // handle new emmployee form submit
     $('#employeeForm').on('submit', addEmployee);
+
+    // handle delete employee button
+    $(document).on('click', '.deleteBtn', deleteEmployee);
+
+
+};
+
+function deleteEmployee() {
+    console.log('delete employee');
+
+    $(this).parents('tr').remove();
+    
+
 };
 
 function addEmployee(event) {
