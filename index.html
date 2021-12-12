@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="jquery.js"></script>
     <script src="client.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>salary-calc-wireframe</title>
 </head>
@@ -14,33 +15,43 @@
     </Header>
 
     <!-- Add Employee Form-->
-    <form id="employeeForm">
+    <form id="employeeForm" class="container form-group">
         <!-- firstName Input-->
         <input
+            required
+            class="form-control"
             id="firstName"
             type="text"
             placeholder="First Name"
         />
         <!-- lastName Input-->
         <input
+            required
+            class="form-control"
             id="lastName"
             type="text"
             placeholder="Last Name"
         />
         <!-- idNumbers Input-->
         <input
+            required
+            class="form-control"
             id="idNumber"
             type="number"
             placeholder="ID"
         />
         <!-- jobTitle Input-->
         <input
+            required
+            class="form-control"
             id="jobTitle"
             type="text"
             placeholder="Job Title"
         />
         <!-- annualSalary Input-->
         <input
+            required
+            class="form-control"
             id="annualSalary"
             type="number"
             placeholder="Annual Salary"
@@ -48,12 +59,13 @@
         />
         <!-- Submit Button-->
         <input
+            class="form-control"
             type="submit"
             value="Add Employee"
         />
     </form>
 
-    <table>
+    <table class="container table">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -80,7 +92,9 @@
 
     </table>
 
-
+<p>
+    TOTAL MONTHLY COST:<span id="totalCost"> $</span></p>
+</p>
 
 
 

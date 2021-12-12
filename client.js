@@ -15,14 +15,16 @@ function onReady() {
 
 };
 
+// start delete employee function
 function deleteEmployee() {
     console.log('delete employee');
 
     $(this).parents('tr').remove();
     
 
-};
+}; // end deleteEmployee
 
+// start add employee function
 function addEmployee(event) {
     // Prevent form from causing page to reload
     event.preventDefault();
@@ -70,8 +72,32 @@ function addEmployee(event) {
                  </td>
             </tr>
         `);
+    };
+
+    function totalMonthlySalary (employeeList) {
+        console.log('Monthly Salary', totalMonthlySalary);
+        let totalSalary = 0;
+        for (let employee of employeeList) {
+            if (employee.salary > 0) {
+                totalSalary += employee.salary;
+            }
+            
+        }
+        return totalSalary;
     }
 
 
 }; // end of addEmployee function
 
+// start add monthly cost function
+// function totalMonthlySalary (employeeList) {
+//     console.log('Monthly Salary', totalMonthlySalary);
+//     let totalSalary = 0;
+//     for (let employee of employeeList) {
+//         if (employee.salary > 0) {
+//             totalSalary += employee.salary;
+//         }
+        
+//     }
+//     return totalSalary;
+// }
