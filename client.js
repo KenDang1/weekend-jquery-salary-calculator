@@ -1,12 +1,15 @@
 $(document).ready(onReady);
 
+// Global liar of employees
+let employeeList = [];
+
 function onReady() {
     console.log('on ready');
     
-    $('#employeeForm').on('submit', onAddEmployee);
-}
+    $('#employeeForm').on('submit', addEmployee);
+};
 
-function onAddEmployee(event) {
+function addEmployee(event) {
     // Prevent form from causing page to reload
     event.preventDefault();
 
@@ -18,7 +21,7 @@ function onAddEmployee(event) {
     let idNumber = $('#idNumber').val();
     let jobTitle = $('#jobTitle').val();
     let annualSalary = Number($('#annualSalary').val());
-
+    // put all info into object
     let employee = {
         firstName:  firstName,
         lastName:   lastName,
@@ -27,6 +30,34 @@ function onAddEmployee(event) {
         salary:     annualSalary
     };
     console.log('New employee', employee);
-    
 
-}
+    // add employee info to object
+    // add it to global employee list
+    employeeList.push(employee);
+    console.log('employee list', employeeList);
+
+    // empty the list before render anything else
+    $('#employeeList').empty();
+
+    // render the employeeList
+    // loop through employeeList array
+    // render each employee
+    // as a <tr>
+    for (let employee of employeeList) {
+        $('#employeeList').append(`
+             <tr>
+                <td>${employee.firstName}</td>
+                <td>${employee.lastName}</td>
+                <td>${employee.id}</td>
+                <td>${employee.title}</td>
+                <td>$${employee.salary}</td>
+                <td>
+                    <button class="deleteBtn">Delete</button>
+                 </td>
+            </tr>
+        `);
+    }
+
+
+}; // end of addEmployee function
+
