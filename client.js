@@ -60,6 +60,9 @@ function addEmployee(event) {
     // render each employee
     // as a <tr>
     for (let employee of employeeList) {
+        let total = 0;
+        console.log('total', total);
+        
         $('#employeeList').append(`
              <tr>
                 <td>${employee.firstName}</td>
@@ -72,32 +75,14 @@ function addEmployee(event) {
                  </td>
             </tr>
         `);
+        if (employee.length > 0){
+            total += employee.salary;
+            $('#totalCost').html(`$${total}`)
+        }
+        return total;
     };
 
-    function totalMonthlySalary (employeeList) {
-        console.log('Monthly Salary', totalMonthlySalary);
-        let totalSalary = 0;
-        for (let employee of employeeList) {
-            if (employee.salary > 0) {
-                totalSalary += employee.salary;
-            }
-            
-        }
-        return totalSalary;
-    }
+
 
 
 }; // end of addEmployee function
-
-// start add monthly cost function
-// function totalMonthlySalary (employeeList) {
-//     console.log('Monthly Salary', totalMonthlySalary);
-//     let totalSalary = 0;
-//     for (let employee of employeeList) {
-//         if (employee.salary > 0) {
-//             totalSalary += employee.salary;
-//         }
-        
-//     }
-//     return totalSalary;
-// }
