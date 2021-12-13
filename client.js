@@ -12,7 +12,6 @@ function onReady() {
     // handle delete employee button
     $(document).on('click', '.deleteBtn', deleteEmployee);
 
-
 };
 
 // start delete employee function
@@ -21,15 +20,12 @@ function deleteEmployee() {
 
     $(this).parents('tr').remove();
     
-
 }; // end deleteEmployee
 
 // start add employee function
 function addEmployee(event) {
     // Prevent form from causing page to reload
     event.preventDefault();
-
-    console.log('employee added');
     
     // grab data from the DOM from my form inputs
     let firstName = $('#firstName').val();
@@ -37,10 +33,6 @@ function addEmployee(event) {
     let idNumber = $('#idNumber').val();
     let jobTitle = $('#jobTitle').val();
     let annualSalary = Number($('#annualSalary').val());
-    let allEmployeeSalary = [];
-    console.log('employee salary', allEmployeeSalary);
-    
-    
     
     // put all info into object
     let employee = {
@@ -59,7 +51,7 @@ function addEmployee(event) {
 
     // empty the list before render anything else
     $('#employeeList').empty();
-
+    $('input').val('');
     // render the employeeList
     // loop through employeeList array
     // render each employee
@@ -72,30 +64,21 @@ function addEmployee(event) {
                 <td>${employee.id}</td>
                 <td>${employee.title}</td>
                 <td>$${employee.salary}</td>
+                <td>$${calMonthlySalary()}</td>
                 <td>
                     <button class="deleteBtn">Delete</button>
                  </td>
             </tr>
         `);
     ;} // end of appending to the DOM
-
-    // looping through employeeList to get all the salary
-    for (let employee of employeeList) {
-        if (employee.salary > 0) {
-            allEmployeeSalary.push(employee.salary);
+    function calMonthlySalary() {
+        let total = 0;
+        for (let i = 0; i < employeeList.length; i++) {
+            total += employeeList[i].salary / 12;
+            
         }
-            return allEmployeeSalary ;
-    }; // end of getting all employee salary into an array
+        return total;
+    };
 
-    // looping through allEmploySalary 
-    function addAllSalary(allEmployeeSalary){
-        let sum = 0;
-        for (let i = 0; i < allEmployeeSalary.length; i++){
-            sum = sum + allEmployeeSalary[i];
-         }
-            return sum;
-      }  // end of adding all salary togethering
-      console.log('total', addAllSalary);
-      
 
 }; // end of addEmployee function
