@@ -1,6 +1,6 @@
 $(document).ready(onReady);
 
-// Global liar of employees
+// Global list of employees
 let employeeList = [];
 
 function onReady() {
@@ -37,6 +37,11 @@ function addEmployee(event) {
     let idNumber = $('#idNumber').val();
     let jobTitle = $('#jobTitle').val();
     let annualSalary = Number($('#annualSalary').val());
+    let allEmployeeSalary = [];
+    console.log('employee salary', allEmployeeSalary);
+    
+    
+    
     // put all info into object
     let employee = {
         firstName:  firstName,
@@ -60,9 +65,6 @@ function addEmployee(event) {
     // render each employee
     // as a <tr>
     for (let employee of employeeList) {
-        let total = 0;
-        console.log('total', total);
-        
         $('#employeeList').append(`
              <tr>
                 <td>${employee.firstName}</td>
@@ -75,14 +77,25 @@ function addEmployee(event) {
                  </td>
             </tr>
         `);
-        if (employee.length > 0){
-            total += employee.salary;
-            $('#totalCost').html(`$${total}`)
+    ;} // end of appending to the DOM
+
+    // looping through employeeList to get all the salary
+    for (let employee of employeeList) {
+        if (employee.salary > 0) {
+            allEmployeeSalary.push(employee.salary);
         }
-        return total;
-    };
+            return allEmployeeSalary ;
+    }; // end of getting all employee salary into an array
 
-
-
+    // looping through allEmploySalary 
+    function addAllSalary(allEmployeeSalary){
+        let sum = 0;
+        for (let i = 0; i < allEmployeeSalary.length; i++){
+            sum = sum + allEmployeeSalary[i];
+         }
+            return sum;
+      }  // end of adding all salary togethering
+      console.log('total', addAllSalary);
+      
 
 }; // end of addEmployee function
