@@ -17,8 +17,8 @@ function onReady() {
 // start delete employee function
 function deleteEmployee() {
     console.log('delete employee');
-
     $(this).parents('tr').remove();
+    
     
 }; // end deleteEmployee
 
@@ -33,7 +33,7 @@ function addEmployee(event) {
     let idNumber = $('#idNumber').val();
     let jobTitle = $('#jobTitle').val();
     let annualSalary = Number($('#annualSalary').val());
-    
+
     // put all info into object
     let employee = {
         firstName:  firstName,
@@ -64,21 +64,60 @@ function addEmployee(event) {
                 <td>${employee.id}</td>
                 <td>${employee.title}</td>
                 <td>$${employee.salary}</td>
-                <td>$${calMonthlySalary()}</td>
                 <td>
                     <button class="deleteBtn">Delete</button>
                  </td>
             </tr>
         `);
     ;} // end of appending to the DOM
-    function calMonthlySalary() {
-        let total = 0;
-        for (let i = 0; i < employeeList.length; i++) {
-            total += employeeList[i].salary / 12;
-            
-        }
-        return total;
+
+    // calculate monthly salary
+    // if month salary cost over 20000, highlight it red
+    // function calMonthlySalary() {
+    //     let total = 0;
+    //     for (let employee of employeeList) {
+    //         total += employee.salary / 12;
+    //     if (total > 20000) {
+    //         $('p').parents('div').css('background-color', 'red')
+    //     }
+    //     else {
+    //         $('p').parents('div').css('background-color', 'white')
+    //         }
+    //     }
+    //     return total;
+    // }; // end monthly salary
+
+    // appending monthly salary to DOM
+    // round it to 2 decimals
+    // let monthlySalary = calMonthlySalary();
+    // monthlySalary = Math.round(monthlySalary * 100);
+    // monthlySalary = monthlySalary/100;
+    // $('#monthlyCost').empty('');
+    // $('#monthlyCost').append(`
+    //         <p><strong>MONTHLY COST:</strong> $${monthlySalary}</p>
+    // `);
+    // Start with a total of 0
+    let totalSalary = 0;
+    for (let employee of employeeList) {
+        // then add each employee's salary to the total
+        totalSalary += employee.salary;
     };
 
+    // Divide by 12 to get the monthly salary
+    let totalMonthlySalary = totalSalary / 12;
+    // round it to the nearest decimal
+    totalMonthlySalary = Math.round(totalMonthlySalary * 100) /100;
+    $('#monthlyCost').empty('');
+    // render to the DOM
+    $('#monthlyCost').append(`
+            <p><strong>MONTHLY COST:</strong> $${totalMonthlySalary}</p>
+    `);
+    // if total monthly cost greater 20000 turn background red
+    if (totalMonthlySalary > 20000) {
+                $('p').parents('div').css('background-color', 'red')
+            }
+            else {
+                $('p').parents('div').css('background-color', 'white')
+            };
 
 }; // end of addEmployee function
